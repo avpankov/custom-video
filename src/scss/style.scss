@@ -1,0 +1,124 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: black;
+    margin: 0;
+}
+.container {
+    max-width: 1440px;
+    margin: 0 auto;
+}
+.header {
+
+    .header__title {
+        margin: 20px auto;
+        height: 80px;
+        width: 50%;
+        background: linear-gradient(to top, black 39px , #bdae82 39px, #bdae82 41px, black 39px);
+        color: #bdae82;
+        font-size: 40px;
+        text-align: center;
+
+        h2 {
+            display: inline;
+            background-color: black;
+            padding: 20px
+        }
+    }
+}
+
+footer {
+    
+
+    .footer__container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        color: white;
+        height: 80px;
+        font-size: 22px;
+    
+        .footer__info {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            
+    
+            p {
+                margin: 0 15px;
+                transition: color .3s;
+            }
+
+            p:last-child:hover {
+                cursor: pointer;
+                color: #bdae82;
+            }
+
+            
+        }
+    
+        .rss-logo {
+            
+            a {
+                color: white;
+                text-decoration: none;
+                transition: color .3s;
+
+            }
+
+            a:hover {
+                color: #bdae82;
+            }
+        }
+    }
+}
+
+main {
+    .video-player {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        border: 1px solid #bdae82;
+        margin: 0 80px;
+        overflow: hidden;
+    }
+    .poster {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background: url('../assets/img/hannah-busing-6NUUZZ16hJk-unsplash.jpg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        z-index: 2;
+    }
+
+    .video {
+        z-index: 1;
+    }
+
+    .play-button {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        background: url('../assets/svg/play-btn.svg');
+        background-size: cover;
+        z-index: 2;
+    }
+
+    .controllers {
+        height: 100px;
+        width: 100%;
+    }
+}
