@@ -5,19 +5,28 @@
 }
 
 body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100vh;
+    min-width: 320px;
     background-color: black;
     margin: 0;
 }
+
 .container {
-    max-width: 1440px;
+    max-width: 1280px;
     margin: 0 auto;
+    padding: 0 20px;
 }
+
 .header {
 
     .header__title {
-        margin: 20px auto;
+        margin: 0 auto;
         height: 80px;
-        width: 50%;
+        min-width: 50%;
+        max-width: 700px;
         background: linear-gradient(to top, black 39px , #bdae82 39px, #bdae82 41px, black 39px);
         color: #bdae82;
         font-size: 40px;
@@ -33,23 +42,26 @@ body {
 
 footer {
     
-
     .footer__container {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
         color: white;
-        height: 80px;
+        height: 50px;
         font-size: 22px;
-    
+        
+        @media (max-width: 800px) {
+            flex-direction: column;
+            justify-content: center;
+        }
+
         .footer__info {
             display: flex;
             flex-direction: row;
             justify-content: space-around;
             align-items: center;
-            
-    
+              
             p {
                 margin: 0 15px;
                 transition: color .3s;
@@ -59,8 +71,6 @@ footer {
                 cursor: pointer;
                 color: #bdae82;
             }
-
-            
         }
     
         .rss-logo {
@@ -69,7 +79,6 @@ footer {
                 color: white;
                 text-decoration: none;
                 transition: color .3s;
-
             }
 
             a:hover {
@@ -82,15 +91,16 @@ footer {
 main {
     .video-player {
         width: 100%;
+        max-width: 1280px;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: center;
         position: relative;
         border: 1px solid #bdae82;
-        margin: 0 80px;
+        margin: 0 auto;
         overflow: hidden;
     }
+
     .poster {
         position: absolute;
         top: 0;
@@ -110,15 +120,80 @@ main {
 
     .play-button {
         position: absolute;
+        align-self: center;
         width: 200px;
         height: 200px;
         background: url('../assets/svg/play-btn.svg');
         background-size: cover;
         z-index: 2;
+        transition: filter .5s ease-in-out;
+    }
+
+    .play-button:hover {
+        filter: invert(26%) sepia(15%) saturate(638%) hue-rotate(7deg) brightness(92%)
+    contrast(87%);
     }
 
     .controllers {
-        height: 100px;
+        position: absolute;
+        bottom: -30px;
+        height: 30px;
         width: 100%;
+        background-color: black;
+        z-index: 1;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 15px;
+        transition: bottom .3s;
+
+        .play {
+            width: 17px;
+            height: 17px;
+            background: url('../assets/svg/play.svg');
+            background-size: contain;
+            background-repeat: no-repeat;
+            margin-right: 15px;
+        }
+
+        .pause {
+            background: url('../assets/svg/pause.svg');
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        #timeline {
+            width: 100%;
+        }
+        
+        .range {
+            -webkit-appearance: none;
+            background:  #fff;
+            height: 7px;
+            border-radius: 5px;
+        }
+
+        .range::-webkit-slider-thumb {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: #bdae82;
+            box-shadow: 0 0 5px black;
+            -webkit-appearance: none;
+        }
+
+        .mute {
+            width: 17px;
+            height: 17px;
+            background: url('../assets/svg/volume.svg');
+            background-size: contain;
+            background-repeat: no-repeat;
+            margin: 15px;
+        }
     }
+}   
+
+.video-player:hover .controllers {
+    bottom: 0;
 }

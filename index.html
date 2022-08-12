@@ -21,10 +21,14 @@
                 <div class="poster"></div>
                 <video class="video" src="./src/assets/video/video.mp4"></video>
                 <div class="play-button"></div>
-                <div class="controllers"></div>
+                <div class="controllers">
+                    <div class="play"></div>
+                    <input type="range" name="timeline" id="timeline" class="range" value="0">
+                    <div class="mute"></div>
+                    <input type="range" name="volume" id="volume" class="range">
+                </div>
             </div>
         </div>
-
     </main>
     <footer>
         <div class="container">
@@ -38,5 +42,6 @@
             </div>
         </div>
     </footer>
+    <script src="src/index.js"></script>
 </body>
 </html>
