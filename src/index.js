@@ -6,6 +6,7 @@ let timeline = document.getElementById('timeline');
 let mute = document.querySelector('.mute');
 let isPlaying = false;
 let isMuted = false;
+let currentVolume;
 let duration;
 
 video.addEventListener('loadedmetadata', () => {
@@ -33,9 +34,9 @@ mute.addEventListener('click', () => {
         mute.classList.toggle('unmute');
         isMuted = true;
     } else {
-        video.volume = 1;
-        volume.value = 1;
-        volume.style.background = '#bdae82';
+        video.volume = currentVolume || 1;
+        volume.value = currentVolume || 1;
+        volume.style.background = currentVolume ? `linear-gradient(to right, #bdae82 0%, #bdae82 ${currentVolume * 100}%, #fff ${currentVolume * 100}%, #fff 100%)` : '#bdae82';
         mute.classList.toggle('unmute');
         isMuted = false;
     }
@@ -44,6 +45,7 @@ mute.addEventListener('click', () => {
 volume.addEventListener('input', () => {
     volume.style.background = `linear-gradient(to right, #bdae82 0%, #bdae82 ${volume.value * 100}%, #fff ${volume.value * 100}%, #fff 100%)`;
     video.volume = volume.value;
+    currentVolume = video.volume;
 })
 function playVideo() {
     if (!isPlaying) {
