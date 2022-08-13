@@ -143,6 +143,9 @@ main .controllers .pause {
 main .controllers #timeline {
   width: 100%;
 }
+main .controllers #volume {
+  background: #bdae82;
+}
 main .controllers .range {
   -webkit-appearance: none;
   background: #fff;
@@ -164,6 +167,11 @@ main .controllers .mute {
   background-size: contain;
   background-repeat: no-repeat;
   margin: 15px;
+}
+main .controllers .unmute {
+  background: url("../assets/svg/mute.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .video-player:hover .controllers {

@@ -3,13 +3,16 @@ let playButton = document.querySelector('.play-button');
 let play = document.querySelector('.play');
 let poster = document.querySelector('.poster');
 let timeline = document.getElementById('timeline');
+let mute = document.querySelector('.mute');
 let isPlaying = false;
+let isMuted = false;
 let duration;
 
 video.addEventListener('loadedmetadata', () => {
     duration = video.duration;
     timeline.max = duration;
-    console.dir(timeline.max);
+    timeline.step = 0.01;
+    video.volume = 1;
 })
 
 playButton.addEventListener('click', playVideo);
@@ -18,21 +21,47 @@ video.addEventListener('click', playVideo);
 timeline.min = 0;
 
 timeline.addEventListener('input', () => {
-    timeline.style.background = `linear-gradient(to right, #bdae82 0%, #bdae82 ${timeline.value}%, #fff ${timeline.value}%, #fff 100%)`;
+    timeline.style.background = `linear-gradient(to right, #bdae82 0%, #bdae82 ${timeline.value * 100 / video.max}%, #fff ${timeline.value * 100 / video.max}%, #fff 100%)`;
     video.currentTime = timeline.value;
-    console.log(currentTime);
 });
 
+mute.addEventListener('click', () => {
+    if (!isMuted) {
+        video.volume = 0;
+        volume.value = 0;
+        volume.style.background = '#fff';
+        mute.classList.toggle('unmute');
+        isMuted = true;
+    } else {
+        video.volume = 1;
+        volume.value = 1;
+        volume.style.background = '#bdae82';
+        mute.classList.toggle('unmute');
+        isMuted = false;
+    }
+});
+
+volume.addEventListener('input', () => {
+    volume.style.background = `linear-gradient(to right, #bdae82 0%, #bdae82 ${volume.value * 100}%, #fff ${volume.value * 100}%, #fff 100%)`;
+    video.volume = volume.value;
+})
 function playVideo() {
     if (!isPlaying) {
         video.play();
         playButton.style.display = 'none';
         poster.style.display = 'none';
         play.classList.toggle('pause');
-        setInterval(() => {
-            timeline.value = Math.round(video.currentTime);
-            timeline.style.background = `linear-gradient(to right, #bdae82 0%, #bdae82 ${Math.round(video.currentTime * 100 / video.duration)}%, #fff ${Math.round(video.currentTime * 100 / video.duration)}%, #fff 100%)`;
-        }, 1000);
+        let timer = setInterval(() => {
+            timeline.value = video.currentTime;
+            timeline.style.background = `linear-gradient(to right, #bdae82 0%, #bdae82 ${video.currentTime * 100 / video.duration}%, #fff ${video.currentTime * 100 / video.duration}%, #fff 100%)`;
+            if (video.currentTime == video.duration) {
+                clearInterval(timer);
+                video.pause();
+                playButton.style.display = 'block';
+                play.classList.toggle('pause');
+                isPlaying = false;
+            } 
+        }, 100);
         isPlaying = true;
     } else {
         video.pause();

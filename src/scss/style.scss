@@ -166,6 +166,10 @@ main {
         #timeline {
             width: 100%;
         }
+
+        #volume {
+            background: #bdae82;
+        }
         
         .range {
             -webkit-appearance: none;
@@ -190,6 +194,12 @@ main {
             background-size: contain;
             background-repeat: no-repeat;
             margin: 15px;
+        }
+
+        .unmute {
+            background: url('../assets/svg/mute.svg');
+            background-size: contain;
+            background-repeat: no-repeat;
         }
     }
 }   
